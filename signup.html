@@ -1,0 +1,43 @@
+<!--Header same as index.html-->
+<!--Smaller header that says Sign Up or Register-->
+<!--4 text inputs (name, email, username, password)-->
+<!--submit button-->
+<!--inputs, button, and signup header should be grouped together similarly to our cards-->
+
+<!--STRETCH - make email and password imputs validate what's typed into them (the email input should require an @ symbol, the password input should not type out actual letters)-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>MCU Checklist</h1>
+    </div>
+    <div class="register">
+      <h3>Register</h3>
+    </div>
+    <form class="registerForm">
+      <!-- <div class="input"> -->
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required />
+      <!-- </div> -->
+      <!-- <div class="input"> -->
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+      <!-- </div> -->
+      <!-- <div class="input"> -->
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+      <!-- </div> -->
+      <!-- <div class="input"> -->
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+      <!-- </div> -->
+      <!-- <div class="submitBtn"> -->
+      <button type="submit" class="registerBtn">Submit</button>
+      <!-- </div> -->
+    </form>
+    <script type="module" src="./src/signup.js"></script>
+  </body>
+</html>
