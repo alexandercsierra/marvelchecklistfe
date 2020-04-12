@@ -45,3 +45,23 @@
     localStorage.clear();
     window.location.href = "../index.html"
   } )
+
+
+  export const addReview = (review) => {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+    
+        if (xhr.status >= 200 && xhr.status < 300) {
+            console.log('success!');
+            window.location.href = "../index.html";
+        } else {
+            console.log('The request failed!', xhr);
+        }
+    };
+  
+  
+    let jsonStr = JSON.stringify(review);
+    xhr.open('POST', 'https://marvelchecklist.herokuapp.com/api/reviews/id');
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(jsonStr);
+  }

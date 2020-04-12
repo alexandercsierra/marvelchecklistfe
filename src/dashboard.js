@@ -19,6 +19,7 @@ export function appendMovies(movies) {
 
     let poster = document.createElement("img");
     poster.src = movies[i].img;
+    poster.setAttribute("id", movies[i].id) 
 
     let year = document.createElement("p");
     year.textContent = movies[i].year;
@@ -56,6 +57,7 @@ var xhr = new XMLHttpRequest();
             card.addEventListener("click", e => {
                 currentMovie = e.path[2].innerText;
                 console.log("currentMovie", currentMovie);
+                console.log("trying to get id", e.path)
             });
             });
         } else {
@@ -69,3 +71,26 @@ var xhr = new XMLHttpRequest();
     xhr.setRequestHeader("Authorization", token);
     xhr.send();
 
+    const signoutBtn = document.querySelector(".signout");
+    signoutBtn.addEventListener("click", e=> {
+      localStorage.clear();  
+      window.location.href = "../index.html";
+    })
+    const rating = document.querySelector("#rating-scale");
+    const comment = document.querySelector("#message-text");
+    const ratingForm = document.querySelector(".ratingForm");
+
+    const addButton = document.querySelector(".addButton")
+
+    addButton.addEventListener("click", e => {
+      e.preventDefault();
+    
+      let ratStr = rating.value.toString();
+
+      let movieRating = {
+       rating:ratStr,
+       comment:comment.value
+      };
+    console.log("current movie from the form", currentMovie)
+    // addRating(movieRating);
+    });
