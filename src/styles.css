@@ -67,3 +67,22 @@ input {
   justify-content: flex-end;
   /* border: 1px solid green; */
 }
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;;
+  padding: 2%;
+  width: 25%;
+  text-align: center;
+}
+
+nav a:hover {
+  background: white;
+  color: #151515;
+}
