@@ -1,9 +1,9 @@
-import {getReviews, reviewObj, addReview} from './utils.js';
+import {getReviews, reviewArr, addReview, getAverageRating} from './utils.js';
 let movies = [];
 let currentMovie = "";
 let clickedMovies = [];
 getReviews();
-console.log('reviewObj', reviewObj)
+console.log('reviewObj', reviewArr)
 
 
 
@@ -14,6 +14,11 @@ const container = document.querySelector(".container");
 
 export function appendMovies(movies) {
   for (let i = 0; i < movies.length; i++) {
+
+    let avgRating = getAverageRating(movies[i].id, reviewArr);
+    console.log(avgRating)
+
+
     let card = document.createElement("div");
     card.classList.add("card");
     card.setAttribute('id', movies[i].id)
@@ -22,8 +27,10 @@ export function appendMovies(movies) {
     title.textContent = movies[i].title;
 
     let rating = document.createElement("p");
-    if(reviewObj[movies[i].id]){
-      rating.textContent = `rating: ${reviewObj[movies[i].id]}`
+    if(avgRating){
+      rating.textContent = `rating: ${avgRating}`
+    } else {
+      rating.textContent = 'no ratings yet'
     }
 
     let imgDiv = document.createElement("div");
@@ -35,6 +42,7 @@ export function appendMovies(movies) {
 
     let year = document.createElement("p");
     year.textContent = movies[i].year;
+    
 
     let addReviewBtn = document.createElement("button");
     addReviewBtn.setAttribute("id", `${movies[i].id}btn`) 
@@ -52,12 +60,38 @@ export function appendMovies(movies) {
       console.log("current title", currentMovie.title);
     });
 
+    let titleDiv = document.createElement('div');
+    titleDiv.appendChild(title);
+    titleDiv.style.height = "40px"
+
+    
+    let ratingDiv = document.createElement('div');
+    ratingDiv.appendChild(rating);
+
+    let yearDiv = document.createElement('div');
+    yearDiv.appendChild(year);
+    yearDiv.style.padding = "10% 0"
+
+
+    // title.setAttribute('style', "width: 85%")
+    // rating.setAttribute('style', "width: 25%")
+    // poster.setAttribute('style', "width: 25%")
+    // year.setAttribute('style', "width: 25%")
+    
+    poster.style.width = "275px"
+
     imgDiv.appendChild(poster);
-    card.appendChild(title);
-    card.appendChild(rating)
+    // card.appendChild(title);
+    card.appendChild(titleDiv);
+    // card.appendChild(rating);
+    card.appendChild(ratingDiv);
     card.appendChild(imgDiv);
-    card.appendChild(year);
+    // card.appendChild(year);
+    card.appendChild(yearDiv);
     card.appendChild(addReviewBtn);
+
+
+
     container.appendChild(card);
   }
 }

@@ -72,7 +72,7 @@
 
 
 
-  export const reviewObj = {};
+  export let reviewArr = [];
   export const getReviews = () => {
     var xhr = new XMLHttpRequest();
     xhr.onload = function () {
@@ -82,9 +82,7 @@
             let parsed = JSON.parse(xhr.response);
             let reviews = parsed;
             console.log('reviews', reviews)
-            reviews.forEach(review=>{
-              reviewObj[review.movie_id] = review.rating;
-            })
+            reviewArr = reviews;
 
 
         } else {
@@ -98,4 +96,21 @@
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", token);
     xhr.send();
+  }
+
+
+  export function getAverageRating(currentMovieId, reviews){
+    console.log('reviews from getavg', reviews)
+    let ratings = [];
+    for (let i = 0; i < reviews.length; i++){
+      if (currentMovieId === reviews[i].movie_id){
+        ratings.push(reviews[i].rating)
+      }
+    }
+    let total = 0;
+    
+    for(let i=0; i<ratings.length; i++){
+      total += Number(ratings[i]);
+    }
+    return total/ratings.length;
   }
