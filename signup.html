@@ -1,13 +1,7 @@
-<!--Header same as index.html-->
-<!--Smaller header that says Sign Up or Register-->
-<!--4 text inputs (name, email, username, password)-->
-<!--submit button-->
-<!--inputs, button, and signup header should be grouped together similarly to our cards-->
-
-<!--STRETCH - make email and password imputs validate what's typed into them (the email input should require an @ symbol, the password input should not type out actual letters)-->
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./src/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Movie Checklist</title>
@@ -26,25 +20,23 @@
       <h3>Register</h3>
     </div>
     <form class="registerForm">
-      <!-- <div class="input"> -->
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required />
-      <!-- </div> -->
-      <!-- <div class="input"> -->
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required />
-      <!-- </div> -->
-      <!-- <div class="input"> -->
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required />
-      <!-- </div> -->
-      <!-- <div class="input"> -->
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
-      <!-- </div> -->
-      <!-- <div class="submitBtn"> -->
-      <button type="submit" class="registerBtn">Submit</button>
-      <!-- </div> -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" id="name" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="email" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input class="form-control" id="username" placeholder="Enter username" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn btn-primary registerBtn">Sign Up</button>
     </form>
     <script type="module" src="./src/signup.js"></script>
   </body>
