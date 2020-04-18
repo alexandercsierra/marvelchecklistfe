@@ -26,17 +26,33 @@ h3 {
   align-items: center;
 }
 
+.hidden{
+  visibility: hidden;
+}
+
 .card {
   /* border: 1px solid red; */
   border-radius: 5px;
-  width: 22%;
-  margin: 4%;
+  width: 25%;
+  margin: 2%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: transparent;
   /* background: #e8e8e8; */
   /* color: #151515; */
+  transition: all .2s ease-in-out;
+  border: none;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  color: #2dad48;
+}
+
+.greenText {
+  color: #2dad48;
 }
 
 .grey {
@@ -85,4 +101,28 @@ nav a {
 nav a:hover {
   background: white;
   color: #151515;
+}
+
+#exampleModal{
+  /* background: red; */
+}
+
+.modal-content{
+  margin-top: 10%;
+  background: #151515;
+  border: 1px solid white;
+}
+
+button.close span{
+  color: white;
+}
+
+button.close span:hover{
+  color: red;
+}
+
+.btn-primary{
+  background: transparent;
+  border: 1px solid white;
+  font-size: .9rem;
 }
