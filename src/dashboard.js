@@ -43,6 +43,8 @@ export function appendMovies(movies) {
     addReviewBtn.setAttribute("data-target", "#exampleModal") 
     addReviewBtn.textContent="add a review";
     addReviewBtn.classList.add("hidden");
+    addReviewBtn.classList.add("btn");
+    addReviewBtn.classList.add("btn-primary");
 
     addReviewBtn.addEventListener("click", () => {
       // myModal.modal("show");
@@ -65,12 +67,6 @@ const myModal = document.querySelector("#exampleModal");
 console.log(myModal);
 
 let reviewTitle = document.querySelector("#exampleModalLabel");
-
-reviewBtn.addEventListener("click", () => {
-  // myModal.modal("show");
-  reviewTitle.textContent = currentMovie.title;
-  console.log("current title", currentMovie.title);
-});
 
 
 var xhr = new XMLHttpRequest();
