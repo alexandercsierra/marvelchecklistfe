@@ -1,6 +1,11 @@
+import {getReviews, reviewObj, addReview} from './utils.js';
 let movies = [];
 let currentMovie = "";
 let clickedMovies = [];
+getReviews();
+console.log('reviewObj', reviewObj)
+
+
 
 // getMovies(movies, currentMovie);
 console.log('currentmovie from dashboard', currentMovie)
@@ -15,6 +20,11 @@ export function appendMovies(movies) {
 
     let title = document.createElement("h3");
     title.textContent = movies[i].title;
+
+    let rating = document.createElement("p");
+    if(reviewObj[movies[i].id]){
+      rating.textContent = `rating: ${reviewObj[movies[i].id]}`
+    }
 
     let imgDiv = document.createElement("div");
     imgDiv.classList.add("imgDiv");
@@ -42,6 +52,7 @@ export function appendMovies(movies) {
 
     imgDiv.appendChild(poster);
     card.appendChild(title);
+    card.appendChild(rating)
     card.appendChild(imgDiv);
     card.appendChild(year);
     card.appendChild(addReviewBtn);
@@ -100,7 +111,7 @@ var xhr = new XMLHttpRequest();
     xhr.setRequestHeader("Authorization", token);
     xhr.send();
 
-    const signoutBtn = document.querySelector(".signout");
+    const signoutBtn = document.querySelector(".signOut");
     signoutBtn.addEventListener("click", e=> {
       localStorage.clear();  
       window.location.href = "../index.html";
@@ -125,6 +136,7 @@ var xhr = new XMLHttpRequest();
        rating:ratStr,
        comment:comment.value
       };
-    console.log("current movie from the form", currentMovie)
+    // console.log("the rating", movieRating, 'id', currentMovie.id)
+    addReview(movieRating, currentMovie.id)
     // addRating(movieRating);
     });
