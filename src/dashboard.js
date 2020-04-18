@@ -1,5 +1,6 @@
 let movies = [];
 let currentMovie = "";
+let clickedMovies = [];
 
 // getMovies(movies, currentMovie);
 console.log('currentmovie from dashboard', currentMovie)
@@ -10,6 +11,7 @@ export function appendMovies(movies) {
   for (let i = 0; i < movies.length; i++) {
     let card = document.createElement("div");
     card.classList.add("card");
+    card.setAttribute('id', movies[i].id)
 
     let title = document.createElement("h3");
     title.textContent = movies[i].title;
@@ -24,10 +26,25 @@ export function appendMovies(movies) {
     let year = document.createElement("p");
     year.textContent = movies[i].year;
 
+    let addReviewBtn = document.createElement("button");
+    addReviewBtn.setAttribute("id", `${movies[i].id}btn`) 
+    addReviewBtn.setAttribute("type", "button") 
+    addReviewBtn.setAttribute("data-toggle", "modal") 
+    addReviewBtn.setAttribute("data-target", "#exampleModal") 
+    addReviewBtn.textContent="add a review";
+    addReviewBtn.classList.add("hidden");
+
+    addReviewBtn.addEventListener("click", () => {
+      // myModal.modal("show");
+      reviewTitle.textContent = currentMovie.title;
+      console.log("current title", currentMovie.title);
+    });
+
     imgDiv.appendChild(poster);
     card.appendChild(title);
     card.appendChild(imgDiv);
     card.appendChild(year);
+    card.appendChild(addReviewBtn);
     container.appendChild(card);
   }
 }
@@ -40,8 +57,8 @@ let reviewTitle = document.querySelector("#exampleModalLabel");
 
 reviewBtn.addEventListener("click", () => {
   // myModal.modal("show");
-  reviewTitle.textContent = currentMovie;
-  console.log("current title", currentMovie);
+  reviewTitle.textContent = currentMovie.title;
+  console.log("current title", currentMovie.title);
 });
 
 
@@ -55,9 +72,21 @@ var xhr = new XMLHttpRequest();
             appendMovies(movies);
             document.querySelectorAll(".card").forEach(card => {
             card.addEventListener("click", e => {
-                currentMovie = e.path[2].innerText;
-                console.log("currentMovie", currentMovie);
-                console.log("trying to get id", e.path)
+                currentMovie = movies[card.id-1]
+                clickedMovies.push(card.id);
+                
+                for(let i=0; i<clickedMovies.length; i++){
+                  let aClickedCard = document.getElementById(`${clickedMovies[i]}`)
+                  let btn = document.getElementById(`${clickedMovies[i]}btn`)
+                  if(clickedMovies[i] === clickedMovies[clickedMovies.length-1]){
+                    aClickedCard.classList.add('greenText')
+                    btn.classList.remove('hidden')
+                  } else {
+                    aClickedCard.classList.remove('greenText')
+                    btn.classList.add('hidden')
+                  }
+                }
+                
             });
             });
         } else {
@@ -81,6 +110,11 @@ var xhr = new XMLHttpRequest();
     const ratingForm = document.querySelector(".ratingForm");
 
     const addButton = document.querySelector(".addButton")
+
+    function clearGreenText(card){
+      card.classList.remove('greenText')
+      console.log('cleared', card, card.classList)
+    }
 
     addButton.addEventListener("click", e => {
       e.preventDefault();
