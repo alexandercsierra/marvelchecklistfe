@@ -49,6 +49,7 @@ export function appendMovies(movies) {
     addReviewBtn.setAttribute("type", "button") 
     addReviewBtn.setAttribute("data-toggle", "modal") 
     addReviewBtn.setAttribute("data-target", "#exampleModal") 
+    addReviewBtn.setAttribute("style", "margin-bottom: 4%") 
     addReviewBtn.textContent="add a review";
     addReviewBtn.classList.add("hidden");
     addReviewBtn.classList.add("btn");
@@ -70,7 +71,9 @@ export function appendMovies(movies) {
 
     let yearDiv = document.createElement('div');
     yearDiv.appendChild(year);
-    yearDiv.style.padding = "10% 0"
+    yearDiv.style.padding = "5% 0"
+
+
 
 
     // title.setAttribute('style', "width: 85%")
